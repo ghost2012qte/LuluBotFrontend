@@ -1,0 +1,17 @@
+<section class="relative-page">
+
+    <h1 class="relative-page__title">WELCOME TO LULU ADMIN PANEL!</h1>
+
+    <div class="lulu-img-wrapper">
+        <img class="lulu-img-wrapper__image" src="/assets/img/keke-min.png">
+    </div>
+    
+    <form class="admin-code-form">
+        <h3 class="info-text admin-code-form__info-text">
+            Please enter your <b>admin code</b> here. <br>
+            Otherwise, you won't be able to manage database
+        </h3>
+        <input class="admin-code-form__input" type="text" [(ngModel)]="adminCode" name="admin_code" (input)="saveCodeToLS()" (focus)="$event.target.select()">
+    </form>
+
+</section>

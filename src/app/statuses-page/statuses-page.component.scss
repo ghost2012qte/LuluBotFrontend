@@ -1,0 +1,19 @@
+.titled-list {
+    background: #2f3136;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    margin-bottom: 30px;
+    &__title {
+        font-size: 24px;
+    }
+    &__list {
+        margin: 20px 0;
+    }
+    &__item {
+        font-size: 18px;
+    }
+    &__add-btn-icon {
+        margin-right: 5px;
+    }
+}

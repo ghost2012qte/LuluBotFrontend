@@ -1,0 +1,36 @@
+.relative-page__title,
+.info-text {
+    text-align: center;
+    color: var(--app-pink);
+}
+.info-text {
+    font-size: 24px;
+}
+.lulu-img-wrapper {
+    width: 350px;
+    height: 350px;
+    margin: 50px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    &__image {
+        display: block;
+        width: 415px;
+        margin-left: -33px;
+    }
+}
+.admin-code-form {
+    &__info-text {
+        margin-top: 50px;
+    }
+    &__input {
+        display: block;
+        width: 100%;
+        max-width: 410px;
+        margin: 0 auto;
+        height: 45px;
+        font-size: 24px;
+        padding: 0 10px;
+        margin-top: 50px;
+        border-radius: 5px;
+    }
+}

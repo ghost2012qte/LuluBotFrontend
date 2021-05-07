@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+html {
+    --app-pink: #ff4081;
+    --app-grey-1: #202225;
+    --app-grey-2: #2f3136;
+    --app-grey-3: #36393f;
+}
+body {
+    margin: 0;
+    background: var(--app-grey-1);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+a {
+    text-decoration: inherit;
+    color: inherit;
+    font: inherit;
+}
+input {
+    outline: none;
+    border: none;
+    font: inherit;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        margin-left: 20px;
+    }
+}
+
+.flex {
+    display: flex;
+}
+.flex-c {
+    display: flex;
+    align-items: center;
+}
+.no-sel {
+    user-select: none;
+}
+.mat-flat-button.mat-accent {
+    background-color: var(--app-pink);
+}
+
+.relative-page {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    &__title {
+        font-size: 42px !important;
+        margin-bottom: 20px !important;
+        color: #fff;
+    }
+    &__desc {
+        margin: 20px 0 !important;
+        font-size: 16px;
+        color: #8e9297;
+    }
+    &__loader {
+        margin: 20px 0;
+    }
+}

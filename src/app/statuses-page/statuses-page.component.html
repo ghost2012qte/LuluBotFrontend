@@ -1,0 +1,22 @@
+<section class="relative-page">
+    
+    <h1 class="relative-page__title">STATUSES</h1>
+    <p class="relative-page__desc">Note that "@@" would be replaced by a random member name</p>
+    <mat-progress-bar class="relative-page__loader" color="accent" [mode]="statuses ? 'determinate' : 'indeterminate'" [value]="100"></mat-progress-bar>
+
+    <div class="titled-list-container">
+        <article class="titled-list" *ngFor="let group of statuses | keyvalue">
+            <h3 class="titled-list__title">{{group.key}}</h3>
+            <ul class="titled-list__list">
+                <li class="titled-list__item" *ngFor="let status of group.value">{{status.text}}</li>
+                <!-- IF NO ITEMS -->
+                <li class="titled-list__item" *ngIf="!group.value['length']">No items for {{group.key}}</li>
+            </ul>
+            <button mat-flat-button color="accent" class="titled-list__add-btn">
+                <mat-icon class="titled-list__add-btn-icon">add_box</mat-icon>
+                Add New Item
+            </button>
+        </article>
+    </div>
+
+</section>
