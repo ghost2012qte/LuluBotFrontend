@@ -18,4 +18,10 @@ export class StatusService {
             .get<iStatus[]>(environment.api_url + 'statuses', {params: params})
             .toPromise();
     }
+
+    create(activity: string, text: string) {
+        return this.http
+            .post<iStatus>(environment.api_url + 'statuses', {activity: activity, text: text})
+            .toPromise();
+    }
 }

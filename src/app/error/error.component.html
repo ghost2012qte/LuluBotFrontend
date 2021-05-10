@@ -1,0 +1,17 @@
+<div *ngIf="error" class="error" [ngSwitch]="error.statusCode">
+
+    <ng-container *ngSwitchCase="401">
+        <h3 class="error__title">Wait a second!</h3>
+        <p class="error__text">
+            Have you forgotten to input <b>the admin code</b>?
+            <br>
+            Consider doing it <a routerLink="/">HERE</a> :)
+        </p>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+        <h3 class="error__title">Oops! Something has went wrong!</h3>
+        <p class="error__text">Please try again later...</p>
+    </ng-container>
+
+</div>

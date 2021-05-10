@@ -47,6 +47,11 @@ ul {
 .mat-flat-button.mat-accent {
     background-color: var(--app-pink);
 }
+.mat-dialog-container {
+    background: var(--app-grey-3);
+    box-shadow: none;
+    padding: 0 !important;
+}
 
 .relative-page {
     position: relative;
@@ -68,5 +73,107 @@ ul {
     }
     &__loader {
         margin: 20px 0;
+    }
+}
+
+.default-input {
+    width: 100%;
+    color:#fff;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px;
+    background: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.3);
+    outline: none;
+    border-radius: 3px;
+    transition: border-color .2s ease-in-out;
+    
+    &:focus {
+        border-color: var(--app-pink);
+    }
+}
+
+.input-group {
+    &__label {
+        display: block;
+        color: #8e9297;
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 16px;
+        text-transform: uppercase;
+        &.error {
+            color: #F04747;
+        }
+        small {
+            font-size: inherit;
+            font-style: italic;
+            text-transform: none;
+        }
+    }
+}
+
+.dialog_form {
+    width: 500px;
+    color: #fff;
+    &__title {
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0 !important;
+    }
+    &__desc {
+        margin: 8px 0 0 0 !important;
+        color: #b9bbbe;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    &__interaction {
+        background: var(--app-grey-2);
+    }
+    &__header {
+        padding: 24px 16px;
+    }
+    &__body {
+        padding: 0 16px 16px;
+        .input-group:not(:first-child) {
+            margin-top: 10px;
+        }
+    }
+    &__footer {
+        display: flex;
+        padding: 16px;
+        background: var(--app-grey-2);
+        .btn-cancel {
+            margin: 0 10px 0 auto;
+        }
+    }
+}
+
+.btn-confirm,
+.btn-cancel {
+    height: 38px;
+    width: auto;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 2px 16px;
+    user-select: none;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border-radius: 3px;
+}
+
+.btn-confirm {
+    font-weight: 400;
+    // background-color: var(--app-pink);
+    // transition: background-color .17s ease,color .17s ease;
+    // &:hover {
+    //     background-color: darken(#ff4081, 10);
+    // }
+}
+.btn-cancel {
+    &:hover {
+        text-decoration: underline;
     }
 }

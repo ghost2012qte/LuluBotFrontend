@@ -12,11 +12,13 @@
                 <!-- IF NO ITEMS -->
                 <li class="titled-list__item" *ngIf="!group.value['length']">No items for {{group.key}}</li>
             </ul>
-            <button mat-flat-button color="accent" class="titled-list__add-btn">
+            <button mat-flat-button color="accent" class="titled-list__add-btn" (click)="openCreateNewItemDialog(group.key)">
                 <mat-icon class="titled-list__add-btn-icon">add_box</mat-icon>
                 Add New Item
             </button>
         </article>
     </div>
+
+    <app-error [error]="error"></app-error>
 
 </section>

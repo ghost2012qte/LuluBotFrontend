@@ -1,0 +1,15 @@
+.error {
+    color: var(--app-pink);
+    text-align: center;
+    margin-top: 80px;
+    &__title {
+        font-size: 36px;
+    }
+    &__text {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    a {
+        text-decoration: underline;
+    }
+}

@@ -11,7 +11,15 @@
             Please enter your <b>admin code</b> here. <br>
             Otherwise, you won't be able to manage database
         </h3>
-        <input class="admin-code-form__input" type="text" [(ngModel)]="adminCode" name="admin_code" (input)="saveCodeToLS()" (focus)="$event.target.select()">
+        <input
+            class="admin-code-form__input"
+            type="text"
+            name="admin_code"
+            placeholder="Kunlulu~"
+            [(ngModel)]="adminCode"
+            (input)="saveCodeToLS()"
+            (focus)="$event.target.select()"
+        >
     </form>
 
 </section>
