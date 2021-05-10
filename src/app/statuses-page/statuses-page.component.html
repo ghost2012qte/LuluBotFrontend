@@ -8,13 +8,18 @@
         <article class="titled-list" *ngFor="let group of statuses | keyvalue">
             <h3 class="titled-list__title">{{group.key}}</h3>
             <ul class="titled-list__list">
-                <li class="titled-list__item" *ngFor="let status of group.value">{{status.text}}</li>
+                <li class="titled-list__item option" *ngFor="let status of group.value; trackBy: trackByStatusId" (click)="openEditStatusDialog(group.key, status)">
+                    {{status.text}}
+                    <button class="default-btn titled-list__delete-btn" (click)="deleteStatus($event, status)">
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </li>
                 <!-- IF NO ITEMS -->
                 <li class="titled-list__item" *ngIf="!group.value['length']">No items for {{group.key}}</li>
             </ul>
-            <button mat-flat-button color="accent" class="titled-list__add-btn" (click)="openCreateNewItemDialog(group.key)">
+            <button mat-flat-button color="accent" class="titled-list__add-btn" (click)="openCreateNewStatusDialog(group.key)">
                 <mat-icon class="titled-list__add-btn-icon">add_box</mat-icon>
-                Add New Item
+                Create New Status
             </button>
         </article>
     </div>

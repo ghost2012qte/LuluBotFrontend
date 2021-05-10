@@ -47,6 +47,9 @@ ul {
 .mat-flat-button.mat-accent {
     background-color: var(--app-pink);
 }
+.mat-flat-button.mat-warn {
+    background-color: red;
+}
 .mat-dialog-container {
     background: var(--app-grey-3);
     box-shadow: none;
@@ -142,14 +145,16 @@ ul {
         display: flex;
         padding: 16px;
         background: var(--app-grey-2);
-        .btn-cancel {
-            margin: 0 10px 0 auto;
+        .default-btn {
+            margin-left: 10px;
+            &:first-child {
+                margin-left: auto;
+            }
         }
     }
 }
 
-.btn-confirm,
-.btn-cancel {
+.default-btn {
     height: 38px;
     width: auto;
     outline: none;
@@ -162,18 +167,10 @@ ul {
     cursor: pointer;
     background: none;
     border-radius: 3px;
-}
-
-.btn-confirm {
     font-weight: 400;
-    // background-color: var(--app-pink);
-    // transition: background-color .17s ease,color .17s ease;
-    // &:hover {
-    //     background-color: darken(#ff4081, 10);
-    // }
-}
-.btn-cancel {
-    &:hover {
-        text-decoration: underline;
+    &.btn-cancel {
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

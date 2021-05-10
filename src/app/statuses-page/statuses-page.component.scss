@@ -12,6 +12,29 @@
     }
     &__item {
         font-size: 18px;
+        margin: 0;
+        padding: 5px 20px;
+        border-radius: 5px;
+        &:hover {
+            .titled-list__delete-btn {
+                visibility: visible;
+                &:hover {
+                    background: var(--app-pink);
+                }
+            }
+        }
+        &.option {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &:hover {
+                background: var(--app-grey-3);
+            }
+        }
+    }
+    &__delete-btn {
+        visibility: hidden;
     }
     &__add-btn-icon {
         margin-right: 5px;

@@ -24,4 +24,17 @@ export class StatusService {
             .post<iStatus>(environment.api_url + 'statuses', {activity: activity, text: text})
             .toPromise();
     }
+
+    update(id: string, text: string) {
+        return this.http
+            .put<iStatus>(environment.api_url + 'statuses/' + id, {text: text})
+            .toPromise();
+    }
+
+    delete(id: string) {
+        return this.http
+            .delete(environment.api_url + 'statuses/' + id)
+            .toPromise();
+    }
+
 }

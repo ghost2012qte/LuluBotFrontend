@@ -36,16 +36,42 @@ export class StatusesPageComponent implements OnInit {
         }
     }
 
-    openCreateNewItemDialog(activity: string) {
+    openCreateNewStatusDialog(activity: string) {
         const ref = this.dialog.open(EditDialogComponent, {
-            data: {activity: activity, status: null},
-            autoFocus: true
+            data: {
+                activity: activity,
+                status: null
+            }
         })
         ref.afterClosed().subscribe((status: iStatus) => {
             if (status) {
                 this.statuses[status.activity].push(status);
             }
         })
+    }
+
+    openEditStatusDialog(activity: string, status: iStatus) {
+        const ref = this.dialog.open(EditDialogComponent, {
+            data: {
+                activity: activity,
+                status: status
+            }
+        })
+        ref.afterClosed().subscribe((status: iStatus) => {
+            if (status) {
+                this.statuses[status.activity] = this.statuses[status.activity].map(s => s._id == status._id ? status : s);
+            }
+        })
+    }
+
+    async deleteStatus(e: MouseEvent, status: iStatus) {
+        e.stopPropagation();
+        await this.statusService.delete(status._id);
+        this.statuses[status.activity] = this.statuses[status.activity].filter(s => s._id !== status._id);
+    }
+
+    trackByStatusId(i: number, status: iStatus) {
+        return status._id;
     }
 
 }
