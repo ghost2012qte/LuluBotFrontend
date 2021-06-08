@@ -1,1 +1,27 @@
-<p>question-dialog works!</p>
+<form class="dialog_form" [formGroup]="form" autocomplete="off">
+
+    <div class="dialog_form__header">
+        <h2 class="dialog_form__title">{{title}}</h2>
+        <p class="dialog_form__desc"></p>
+    </div>
+
+    <div class="dialog_form__body">
+
+        <article class="input-group">
+            <label class="input-group__label" [class.error]="question_text.dirty && question_text.invalid" for="question_text">
+                Question text
+                <small *ngIf="question_text.dirty && question_text.invalid"> - Required field</small>
+            </label>
+            <input class="default-input" type="text" id="question_text" formControlName="question_text" [readOnly]="loading">
+        </article>
+
+    </div>
+
+    <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
+
+    <div class="dialog_form__footer">
+        <button class="default-btn btn-cancel" [disabled]="loading" (click)="cancel()">Cancel</button>
+        <button mat-flat-button color="accent" [disabled]="loading" class="default-btn btn-confirm" (click)="save()">Save</button>
+    </div>
+    
+</form>

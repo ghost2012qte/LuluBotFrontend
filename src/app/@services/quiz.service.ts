@@ -26,4 +26,8 @@ export class QuizService {
         return this.http.put<iQuiz>(env.api_url + 'quizzes/' + id, {title: title}).toPromise();
     }
 
+    createQuestion(quizId: string, text: string) {
+        return this.http.post<any>(env.api_url + 'questionAdd/' + quizId, {text: text}).toPromise();
+    }
+
 }

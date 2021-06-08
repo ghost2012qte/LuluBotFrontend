@@ -8,11 +8,11 @@
     <div class="dialog_form__body">
 
         <article class="input-group">
-            <label class="input-group__label" [class.error]="quiz_name.dirty && quiz_name.invalid" for="quiz_name">
+            <label class="input-group__label" [class.error]="quiz_title.dirty && quiz_title.invalid" for="quiz_title">
                 Quiz title
-                <small *ngIf="quiz_name.dirty && quiz_name.invalid"> - Required field</small>
+                <small *ngIf="quiz_title.dirty && quiz_title.invalid"> - Required field</small>
             </label>
-            <input class="default-input" type="text" id="quiz_name" formControlName="quiz_name" [readOnly]="loading">
+            <input class="default-input" type="text" id="quiz_title" formControlName="quiz_title" [readOnly]="loading">
         </article>
 
     </div>

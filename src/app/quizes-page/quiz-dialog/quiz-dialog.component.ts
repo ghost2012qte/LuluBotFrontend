@@ -1,81 +1,51 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { fromEvent } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { SubKeeper } from 'src/app/@helpers/sub-keeper';
+import { Component, Injector, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { DialogBase } from 'src/app/@helpers/dialog-base';
 import { QuizService } from 'src/app/@services/quiz.service';
 import { iQuiz } from 'src/interfaces/backend-interfaces';
-import { TypedObject } from 'src/interfaces/frontend-interfaces';
 
 @Component({
     selector: 'app-quiz-dialog',
     templateUrl: './quiz-dialog.component.html',
     styleUrls: ['./quiz-dialog.component.scss']
 })
-export class QuizDialogComponent implements OnInit, OnDestroy {
+export class QuizDialogComponent extends DialogBase<QuizDialogComponent> implements OnInit {
 
     quiz: iQuiz;
 
-    loading = false;
-    form: FormGroup;
-
-    subs = new SubKeeper();
-
-    get quiz_name() {
-        return this.form.controls.quiz_name;
+    get quiz_title() {
+        return this.form.controls.quiz_title;
     }
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public readonly data: TypedObject,
-        public readonly dialogRef: MatDialogRef<QuizDialogComponent>,
-        private readonly quizService: QuizService,
-        private readonly fb: FormBuilder) { }
+        injector: Injector,
+        private readonly quizService: QuizService)
+    {
+        super(injector);
+    }
 
+    // overrided
     ngOnInit() {
-        this.quiz = this.data as iQuiz;
+        this.quiz = this.data.quiz;
+        super.ngOnInit();
+    }
 
-        this.form = this.fb.group({
-            quiz_name: [this.quiz?.title || '', Validators.required]
+    // overrided
+    buildForm() {
+        return this.fb.group({
+            quiz_title: [this.quiz?.title || '', Validators.required]
         })
-
-        this.subs.plus = fromEvent<KeyboardEvent>(window, 'keydown')
-            .pipe(filter(e => e.key === 'Enter'))
-            .subscribe(e => {
-                e.preventDefault();
-                this.save();
-            })
     }
 
-    ngOnDestroy() {
-        this.subs.unsubAll();
-    }
-
-    cancel() {
-        this.dialogRef.close();
-    }
-
-    async save() {
-        for (let key in this.form.controls) {
-            this.form.controls[key].markAsDirty();
+    // overrided
+    async executeSaving() {
+        if (this.quiz) {
+            const editedQuiz = await this.quizService.update(this.quiz._id, this.quiz_title.value);
+            this.dialogRef.close(editedQuiz);
         }
-        if (!this.form.valid) return;
-        this.loading = true;
-        try {
-            // EDIT EXISTING QUIZ
-            if (this.quiz) {
-                const editedQuiz = await this.quizService.update(this.quiz._id, this.quiz_name.value);
-                console.log('edited quiz', editedQuiz);
-                this.dialogRef.close(editedQuiz);
-            }
-            // CREATE NEW QUIZ
-            else {
-                const createdQuiz = await this.quizService.create(this.quiz_name.value);
-                this.dialogRef.close(createdQuiz);
-            }
-        }
-        catch {
-
+        else {
+            const createdQuiz = await this.quizService.create(this.quiz_title.value);
+            this.dialogRef.close(createdQuiz);
         }
     }
 

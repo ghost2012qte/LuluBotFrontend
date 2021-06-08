@@ -44,7 +44,7 @@
 
 <mat-menu #quizMenu="matMenu">
     <ng-template let-quiz="quiz" matMenuContent>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="createQuestion(quiz)">
             <mat-icon>add_box</mat-icon>
             <span>Add new question</span>
         </button>

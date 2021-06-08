@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatMenu } from '@angular/material/menu';
 import { iQuestion, iQuiz } from 'src/interfaces/backend-interfaces';
 import { QuizService } from '../@services/quiz.service';
+import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
 import { QuizDialogComponent } from './quiz-dialog/quiz-dialog.component';
 
 @Component({
@@ -38,7 +38,7 @@ export class QuizesPageComponent implements OnInit {
 
     editQuiz(quiz: iQuiz) {
         const ref = this.dialog.open(QuizDialogComponent, {
-            data: quiz
+            data: {quiz: quiz}
         })
         ref.afterClosed().subscribe((quiz: iQuiz) => {
             if (quiz) {
@@ -53,7 +53,16 @@ export class QuizesPageComponent implements OnInit {
     }
 
     createQuestion(quiz: iQuiz) {
-
+        const ref = this.dialog.open(QuestionDialogComponent, {
+            data: {
+                quiz: quiz
+            }
+        })
+        ref.afterClosed().subscribe(question => {
+            if (question) {
+                console.log(question);
+            }
+        })
     }
 
     editQuestion(quiz: iQuiz, question: iQuestion) {
