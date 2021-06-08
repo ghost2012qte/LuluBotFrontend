@@ -4,9 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppMaterialModule } from './app-material-module';
 
 import { AppComponent } from './app.component';
-import { MaterialsModule } from './materials/materials.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { StatusesPageComponent } from './statuses-page/statuses-page.component';
 import { QuizesPageComponent } from './quizes-page/quizes-page.component';
@@ -15,6 +15,8 @@ import { TokenInterceptor } from './token-interceptor';
 import { OnKeyPressedDirective } from './@directives/on-key-pressed.directive';
 import { ErrorComponent } from './error/error.component';
 import { EditDialogComponent } from './statuses-page/edit-status-dialog/edit-status-dialog.component';
+import { QuizDialogComponent } from './quizes-page/quiz-dialog/quiz-dialog.component';
+import { QuestionDialogComponent } from './quizes-page/question-dialog/question-dialog.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { EditDialogComponent } from './statuses-page/edit-status-dialog/edit-sta
         LoaderComponent,
         OnKeyPressedDirective,
         ErrorComponent,
-        EditDialogComponent
+        EditDialogComponent,
+        QuizDialogComponent,
+        QuestionDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -35,10 +39,10 @@ import { EditDialogComponent } from './statuses-page/edit-status-dialog/edit-sta
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        MaterialsModule
+        AppMaterialModule
     ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+        {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
     ],
     bootstrap: [AppComponent]
 })

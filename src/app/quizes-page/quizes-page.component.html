@@ -1,3 +1,60 @@
 <section class="relative-page">
-    <h1 class="relative-page__title">QUIZES</h1>
+
+    <h1 class="relative-page__title">QUIZZES</h1>
+    <p class="relative-page__desc">Lorem ipsum dolor sit amet.</p>
+    <mat-progress-bar class="relative-page__loader" color="accent" [mode]="quizzes ? 'determinate' : 'indeterminate'" [value]="100"></mat-progress-bar>
+
+    <mat-accordion class="expansion-block no-sel" multi>
+        <mat-expansion-panel class="expansion-block__panel theme-1" *ngFor="let quiz of quizzes" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="expansion-block__title">
+                    <span>{{quiz.title}}</span>
+                    <button
+                        class="expansion-block__options-btn"
+                        mat-icon-button
+                        [matMenuTriggerFor]="quizMenu"
+                        [matMenuTriggerData]="{quiz: quiz}"
+                        (click)="$event.stopPropagation()"
+                    >
+                        <mat-icon>more_vert</mat-icon>
+                </button>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-accordion class="expansion-block" multi>
+                <mat-expansion-panel class="expansion-block__panel theme-2" *ngFor="let question of quiz.questions" hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="expansion-block__title">
+                            <span>{{question.text}}</span>
+                            <button class="expansion-block__options-btn" mat-icon-button (click)="$event.stopPropagation()"><mat-icon>more_vert</mat-icon></button>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p class="expansion-block__no-items" *ngIf="!question.answers?.length">No answers for this quiz yet. Hurry up and add some!</p>
+                </mat-expansion-panel>
+                <p class="expansion-block__no-items" *ngIf="!quiz.questions?.length">No questions for this quiz yet. Hurry up and add some!</p>
+            </mat-accordion>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <button class="default-btn add-new-quiz-btn" mat-flat-button color="accent" (click)="createQuiz()">
+        <mat-icon class="add-new-quiz-btn__icon">add_box</mat-icon>
+        <span>Create New Quiz</span>
+    </button>
+
 </section>
+
+<mat-menu #quizMenu="matMenu">
+    <ng-template let-quiz="quiz" matMenuContent>
+        <button mat-menu-item>
+            <mat-icon>add_box</mat-icon>
+            <span>Add new question</span>
+        </button>
+        <button mat-menu-item (click)="editQuiz(quiz)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+        </button>
+        <button mat-menu-item (click)="deleteQuiz(quiz)">
+            <mat-icon>delete_forever</mat-icon>
+            <span>Delete</span>
+        </button>
+    </ng-template>
+</mat-menu>

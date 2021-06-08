@@ -20,8 +20,8 @@
     <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate"></mat-progress-bar>
 
     <div class="dialog_form__footer">
-        <button class="default-btn btn-cancel" (click)="cancel()">Cancel</button>
-        <button mat-flat-button color="accent" class="default-btn btn-confirm" (click)="save()">Save</button>
+        <button class="default-btn btn-cancel" [disabled]="loading" (click)="cancel()">Cancel</button>
+        <button mat-flat-button color="accent" class="default-btn btn-confirm" [disabled]="loading" (click)="save()">Save</button>
     </div>
     
 </form>

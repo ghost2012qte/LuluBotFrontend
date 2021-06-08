@@ -7,7 +7,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 const routes: Routes = [
     {path: '', pathMatch: 'full', component: WelcomePageComponent},
     {path: 'statuses', component: StatusesPageComponent},
-    {path: 'quizes', component: QuizesPageComponent}
+    {path: 'quizzes', component: QuizesPageComponent}
 ];
 
 @NgModule({

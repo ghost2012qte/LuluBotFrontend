@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment as env } from 'src/environments/environment';
 import { iStatus } from 'src/interfaces/backend-interfaces';
 import { StatusActivity, TypedObject } from 'src/interfaces/frontend-interfaces';
 
@@ -15,25 +15,25 @@ export class StatusService {
             params.activity = activity;
         }
         return this.http
-            .get<iStatus[]>(environment.api_url + 'statuses', {params: params})
+            .get<iStatus[]>(env.api_url + 'statuses', {params: params})
             .toPromise();
     }
 
     create(activity: string, text: string) {
         return this.http
-            .post<iStatus>(environment.api_url + 'statuses', {activity: activity, text: text})
+            .post<iStatus>(env.api_url + 'statuses', {activity: activity, text: text})
             .toPromise();
     }
 
     update(id: string, text: string) {
         return this.http
-            .put<iStatus>(environment.api_url + 'statuses/' + id, {text: text})
+            .put<iStatus>(env.api_url + 'statuses/' + id, {text: text})
             .toPromise();
     }
 
     delete(id: string) {
         return this.http
-            .delete(environment.api_url + 'statuses/' + id)
+            .delete(env.api_url + 'statuses/' + id)
             .toPromise();
     }
 

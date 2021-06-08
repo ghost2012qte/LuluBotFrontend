@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
 
 const modules = [
     MatSnackBarModule,
@@ -13,7 +15,9 @@ const modules = [
     MatIconModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatMenuModule
 ]
 
 @NgModule({
@@ -24,4 +28,4 @@ const modules = [
     ],
     exports: modules
 })
-export class MaterialsModule { }
+export class AppMaterialModule { }

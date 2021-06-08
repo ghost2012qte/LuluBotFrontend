@@ -2,6 +2,8 @@ import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { fromEvent } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { SubKeeper } from 'src/app/@helpers/sub-keeper';
 import { StatusService } from 'src/app/@services/status.service';
 import { iStatus } from 'src/interfaces/backend-interfaces';
@@ -40,6 +42,13 @@ export class EditDialogComponent implements OnInit, OnDestroy {
         this.form = this.fb.group({
             status_text: [this.data.status?.text || '', [Validators.required]]
         })
+
+        this.subs.plus = this.subs.plus = fromEvent<KeyboardEvent>(window, 'keydown')
+            .pipe(filter(e => e.key === 'Enter'))
+            .subscribe(e => {
+                e.preventDefault();
+                this.save();
+            })
     }
 
     ngOnDestroy() {
